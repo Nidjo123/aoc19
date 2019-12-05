@@ -9,7 +9,6 @@ fn manhattan_distance(p: &Point) -> u32 {
     p.0.abs() as u32 + p.1.abs() as u32
 }
 
-#[derive(Debug)]
 enum Direction {
     Up,
     Right,

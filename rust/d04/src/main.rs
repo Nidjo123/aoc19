@@ -10,7 +10,7 @@ fn has_same_adjacent_digits(mut p: u32, just_two: bool) -> bool {
 	    if x == y && y != z {
 		return true;
 	    } else {
-		while p != 0 && p % 10 == x && p / 10 % 10 == x {
+		while p != 0 && p % 10 == p / 10 % 10 {
 		    p /= 10;
 		}
 	    }
