@@ -60,9 +60,9 @@ fn main() -> std::io::Result<()> {
 	let bodies: Vec<&str> = line.split(")").collect();
 	let a = bodies[0].to_string();
 	let b = bodies[1].to_string();
-	(*orbits).insert(b);
 	let orbits = map.entry(a)
 	    .or_insert(HashSet::new());
+	orbits.insert(b);
     }
 
     let res1 = count_orbits(&map);
