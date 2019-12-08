@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::io::{self, prelude::*, BufReader};
+use std::io::{prelude::*, BufReader};
 use std::collections::{HashMap, HashSet};
 
 fn count(depth: u32, current: String, map: &HashMap<String, HashSet<String>>) -> u32 {
@@ -18,7 +18,7 @@ fn count_orbits(map: &HashMap<String, HashSet<String>>) -> u32 {
     count(0, start, map)
 }
 
-fn count_to(wanted: &String, mut path: &mut Vec<String>,
+fn count_to(wanted: &String, path: &mut Vec<String>,
 	    map: &HashMap<String, HashSet<String>>) -> Option<Vec<String>> {
     let current = path.last().unwrap();
     match map.get(current) {
@@ -72,7 +72,6 @@ fn main() -> std::io::Result<()> {
     let path_you = get_path(&you, &map).unwrap();
     let path_san = get_path(&san, &map).unwrap();
 
-    let mut both = 0;
     let both = path_you.iter()
 	.zip(&path_san)
 	.take_while(|(x, y)| x == y)
