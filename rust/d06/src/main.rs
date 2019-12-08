@@ -18,7 +18,7 @@ fn count_orbits(map: &HashMap<String, HashSet<String>>) -> u32 {
     count(0, start, map)
 }
 
-fn count_to(wanted: &String, path: &mut Vec<String>,
+fn path_to(wanted: &String, path: &mut Vec<String>,
 	    map: &HashMap<String, HashSet<String>>) -> Option<Vec<String>> {
     let current = path.last().unwrap();
     match map.get(current) {
@@ -30,7 +30,7 @@ fn count_to(wanted: &String, path: &mut Vec<String>,
 		    return Some(path.clone())
 		} else {
 		    path.push(name);
-		    let res = count_to(wanted, path, map);
+		    let res = path_to(wanted, path, map);
 		    if res.is_some() {
 			return res
 		    }
@@ -46,7 +46,7 @@ fn count_to(wanted: &String, path: &mut Vec<String>,
 fn get_path(name: &String, map: &HashMap<String, HashSet<String>>) -> Option<Vec<String>> {
     let start = String::from("COM");
     let mut path = vec![start];
-    count_to(name, &mut path, map)
+    path_to(name, &mut path, map)
 }
 
 fn main() -> std::io::Result<()> {
