@@ -2,27 +2,10 @@ use std::fs::File;
 use std::io::BufReader;
 use std::io::prelude::*;
 
-const EPS: f64 = 1e-9;
-
 #[derive(Debug, PartialEq)]
 struct Asteroid {
     x: i32,
     y: i32,
-}
-
-fn signum(x: f64) -> f64 {
-    if x < 0.0 {
-        -1.0
-    } else if x > 0.0 {
-        1.0
-    } else {
-        0.0
-    }
-}
-
-fn is_approx_integer(x: f64) -> bool {
-    let xi = (x as i32) as f64;
-    (x - xi).abs() <= EPS
 }
 
 fn gcd(a: i32, b: i32) -> i32 {
