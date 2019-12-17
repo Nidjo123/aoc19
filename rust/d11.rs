@@ -1,5 +1,5 @@
 use std::fs;
-use std::collections::{VecDeque, HashSet, HashMap};
+use std::collections::{VecDeque, HashMap};
 
 const MEM_SIZE: usize = 100000;
 
@@ -287,7 +287,7 @@ fn part1(instrs: &[i128]) -> usize {
     }
 }
 
-fn part2(instrs: &[i128]) -> i128 {
+fn part2(instrs: &[i128]) {
     let mut cpu = CPU {pc: 0,
                        base_offset: 0,
 		       mem: instrs.to_vec(),
@@ -319,9 +319,9 @@ fn part2(instrs: &[i128]) -> i128 {
     }
 
     let max_pos = visited.iter()
-	.fold((0, 0), |acc, ((x, y), v)| (acc.0.max(*x), acc.1.max(*y)));
+	.fold((0, 0), |acc, ((x, y), _v)| (acc.0.max(*x), acc.1.max(*y)));
     let min_pos = visited.iter()
-	.fold((0, 0), |acc, ((x, y), v)| (acc.0.min(*x), acc.1.min(*y)));
+	.fold((0, 0), |acc, ((x, y), _v)| (acc.0.min(*x), acc.1.min(*y)));
     let (dim_x, dim_y) = (max_pos.0 - min_pos.0, max_pos.1 - min_pos.1);
 
     for y in 0..=dim_y {
@@ -335,7 +335,6 @@ fn part2(instrs: &[i128]) -> i128 {
 	}
 	println!();
     }
-    0
 }
 
 fn main() -> std::io::Result<()> {
@@ -348,8 +347,8 @@ fn main() -> std::io::Result<()> {
     let ans1 = part1(&instructions);
     println!("Part 1: {}", ans1);
 
-    let ans2 = part2(&instructions);
-    println!("Part 2: {}", ans2);
+    println!("Part 2:");
+    part2(&instructions);
 
     Ok(())
 }
